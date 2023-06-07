@@ -8,11 +8,11 @@ import (
 
 type ChoiceStruct struct {
 	// choice is the text that will be displayed
-	choice string
+	Choice string
 
 	// id is the value that will be returned
 	// its also used to run the function, make sure its unique
-	id string
+	Id string
 }
 
 /*
@@ -66,10 +66,10 @@ func Choice(choices []ChoiceStruct) string {
 		if i == selected {
 			// Make selected choice bold and add '»'
 			// this is always the first choice
-			fmt.Print("\033[1m", "» "+choice.choice, "\033[0m", "\n")
+			fmt.Print("\033[1m", "» "+choice.Choice, "\033[0m", "\n")
 		} else {
 			// non-selected choices
-			fmt.Println("- " + choice.choice)
+			fmt.Println("- " + choice.Choice)
 		}
 	}
 
@@ -89,7 +89,7 @@ func Choice(choices []ChoiceStruct) string {
 		// if enter or space is pressed, return the id of the selected choice
 		case key == keyboard.KeySpace || key == keyboard.KeyEnter:
 			// indexing the choices with selected
-			return choices[selected].id
+			return choices[selected].Id
 
 		// if arrow up is pressed, move the cursor up
 		case key == keyboard.KeyArrowUp:
@@ -120,10 +120,10 @@ func Choice(choices []ChoiceStruct) string {
 			// user probably moved the cursor
 			if i == selected {
 				// Make selected choice bold and add '»'
-				fmt.Print("\033[1m", "» "+choice.choice, "\033[0m", "\n")
+				fmt.Print("\033[1m", "» "+choice.Choice, "\033[0m", "\n")
 			} else {
 				// non-selected choices
-				fmt.Println("- " + choice.choice)
+				fmt.Println("- " + choice.Choice)
 			}
 		}
 	}

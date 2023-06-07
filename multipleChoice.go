@@ -8,11 +8,11 @@ import (
 
 type MultipleChoiceStruct struct {
 	// choice is the text that will be displayed
-	choice string
+	Choice string
 
 	// id is the value that will be returned
 	// its also used to run the function, make sure its unique
-	id string
+	Id string
 }
 
 /*
@@ -73,10 +73,10 @@ func MultipleChoice(choices []MultipleChoiceStruct, forceResult bool) []string {
 		if i == selected {
 			// make selected choice bold and add '»'
 			// this is always the first choice
-			fmt.Print("\033[1m", "» - "+choice.choice, "\033[0m", "\n")
+			fmt.Print("\033[1m", "» - "+choice.Choice, "\033[0m", "\n")
 		} else {
 			// non-selected choices
-			fmt.Println("  - " + choice.choice)
+			fmt.Println("  - " + choice.Choice)
 		}
 	}
 
@@ -116,12 +116,12 @@ func MultipleChoice(choices []MultipleChoiceStruct, forceResult bool) []string {
 
 		// if space is pressed, toggle the selected choice
 		case key == keyboard.KeySpace:
-			if active[choices[selected].id] {
+			if active[choices[selected].Id] {
 				// if its selected, delete it from the active map
-				delete(active, choices[selected].id)
+				delete(active, choices[selected].Id)
 			} else {
 				// if its not selected, add it to the active map
-				active[choices[selected].id] = true
+				active[choices[selected].Id] = true
 			}
 
 		// if upArrow is pressed, move the cursor
@@ -151,19 +151,19 @@ func MultipleChoice(choices []MultipleChoiceStruct, forceResult bool) []string {
 			if i == selected {
 				// selected choice means whe moved the cursor to it, via up/down arrow
 				// so we make selected choice bold and add '»'
-				if active[choice.id] {
+				if active[choice.Id] {
 					// if its also active, add a checkmark
-					fmt.Print("\033[1m", "» ✓ "+choice.choice, "\033[0m", "\n")
+					fmt.Print("\033[1m", "» ✓ "+choice.Choice, "\033[0m", "\n")
 				} else {
 					// if its not active, add a simple '-'
-					fmt.Print("\033[1m", "» - "+choice.choice, "\033[0m", "\n")
+					fmt.Print("\033[1m", "» - "+choice.Choice, "\033[0m", "\n")
 				}
-			} else if active[choice.id] {
+			} else if active[choice.Id] {
 				// if its active, add a checkmark
-				fmt.Print("\033[1m", "  ✓ "+choice.choice, "\033[0m", "\n")
+				fmt.Print("\033[1m", "  ✓ "+choice.Choice, "\033[0m", "\n")
 			} else {
 				// non-selected choices
-				fmt.Println("  - " + choice.choice)
+				fmt.Println("  - " + choice.Choice)
 			}
 		}
 	}
